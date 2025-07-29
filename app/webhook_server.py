@@ -1,3 +1,8 @@
+"""
+Simple webhook server for GitHub Actions events.
+Stores events in a JSON file that the MCP server can read.
+"""
+
 import json
 from datetime import datetime
 from pathlib import Path
@@ -8,6 +13,7 @@ EVENTS_FILE = Path(__file__).parent / "github_events.json"
 
 
 async def handle_webhook(request):
+    """Handle incoming GitHub webhook"""
     try:
         data = await request.json()
 
