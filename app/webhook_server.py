@@ -9,7 +9,9 @@ from pathlib import Path
 
 from aiohttp import web
 
-EVENTS_FILE = Path(__file__).parent / "github_events.json"
+EVENTS_FILE = (
+    Path(__file__).parent.parent / "data" / "github_events" / "github_events.json"
+)
 
 
 async def handle_webhook(request):
@@ -29,13 +31,15 @@ async def handle_webhook(request):
 
         events = []
         if EVENTS_FILE.exists():
+            print("events exists here")
             with open(EVENTS_FILE, "r") as f:
                 events = json.load(f)
 
         events.append(event)
-        events = event[-100:]
+        events = events[-100:]
 
         with open(EVENTS_FILE, "w") as f:
+            print("events saved here")
             json.dump(events, f, indent=2)
 
         return web.json_response({"status": "received"})
@@ -44,7 +48,7 @@ async def handle_webhook(request):
 
 
 app = web.Application()
-app.add_routes("/webhook/github", handle_webhook)
+app.router.add_post("/webhook/github", handle_webhook)
 
 if __name__ == "__main__":
     print("🚀 Starting webhook server on http://localhost:8080")

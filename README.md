@@ -7,7 +7,7 @@ A PR agent that integrates Slack notifications, GitHub Actions analysis, and Cla
 ### 1. Clone the Repository
 
 ```sh
-git clone https://github.com/yourusername/pr-agent.git
+git clone https://github.com/virendrapatil24/pr-agent.git
 cd pr-agent
 ```
 
@@ -40,13 +40,15 @@ Follow the [official Claude setup guide](https://docs.anthropic.com/en/docs/clau
 Register your MCP server in Claude:
 
 ```sh
-claude mcp add pr-agent /absolute/path/to/pr-agent run server.py
+claude mcp add pr-agent  -- uv --directory /absolute/path/to/pr-agent/app run server.py
 claude mcp list
 ```
 
 ### 4. GitHub Webhook Setup
 
 Start the webhook server to receive GitHub Actions events:
+
+Note: make sure you are using content type as application json.
 
 ```sh
 python app/webhook_server.py
@@ -93,7 +95,8 @@ export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
   “What GitHub Actions events have we received?”
 - Summarize CI results:  
   “Analyze CI Results” or “Create Deployment Summary”
-- Notify your team on Slack about CI/CD status and deployments.
+- Notify your team on Slack about CI/CD status and deployments:
+  "Analyze CI Results and notify the team"
 
 ---
 

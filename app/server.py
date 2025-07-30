@@ -21,7 +21,9 @@ DEFAULT_TEMPLATES = {
     "security.md": "Security",
 }
 
-EVENTS_FILE = Path(__file__).parent / "github_events.json"
+EVENTS_FILE = (
+    Path(__file__).parent.parent / "data" / "github_events" / "github_events.json"
+)
 
 TYPE_MAPPING = {
     "bug": "bug.md",
