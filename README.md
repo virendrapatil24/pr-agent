@@ -100,4 +100,6 @@ export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
 
 ---
 
+Here's the working [demo](https://youtu.be/lyhtDrNdHAQ?si=P_ZK0fPNmP-btS0q) (no voice).
+
 For more details, see [app/server.py](app/server.py) and [app/webhook_server.py](app/webhook_server.py)
